@@ -1,0 +1,57 @@
+<mvc:View controllerName="de.arvato.GRModul07.controller.Main"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:libs="de.arvato.GRModul07.libs" xmlns:ndc="sap.ndc"
+	xmlns:core="sap.ui.core">
+
+	<Page id="idMain" title="{i18n>General.Title}">
+		<headerContent>
+			<Button text="{i18n>General.SaveButton}"
+				press="pressSaveButton" enabled="{app>/CaptureEnabled}"/>
+		</headerContent>
+		<content>
+
+			<core:Fragment
+				fragmentName="de.arvato.GRModul07.fragment.DefaultHeader" type="XML" />
+
+			<!--ObjectHeader title="{app>/Employee/Name}" id="idHeader" number="" 
+				showTitleSelector="false" responsive="true" titleSelectorPress="onTitleSelectorPress"> 
+				<attributes> <ObjectAttribute title="" text="{path: 'app>/currentDate', type: 
+				'sap.ui.model.type.Date', formatOptions: {style: 'full'}}" /> </attributes> 
+				</ObjectHeader -->
+
+			<core:Fragment
+				fragmentName="de.arvato.GRModul07.fragment.RoughGoodsReceipt"
+				type="XML" />
+
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer />
+				<!--Text text="{app>/Employee/Name} ({app>/Employee/Lgnum})"></Text-->
+				<Text text="{app>/Employee/Name}"></Text>
+
+				<ToolbarSeparator></ToolbarSeparator>
+
+				<ToolbarSpacer />
+				<Button icon="sap-icon://alert"
+					text="{= ${message>/}.length }"
+					visible="{= ${message>/}.length > 0 }" type="Emphasized"
+					press="onMessagePopoverPress" />		
+
+				<OverflowToolbarButton
+					press="onGoToSemanticObject" icon="sap-icon://home">
+					<customData>
+						<core:CustomData key="SemanticObject" value="#"></core:CustomData>
+					</customData>
+				</OverflowToolbarButton>
+
+				<libs:ScanButton inputType="Password"
+					id="idScanButton" dialogTitle="{i18n>General.ScanUserIdent}"
+					dialogIcon="sap-icon://visits"
+					dialogAbortText="{i18n>General.AbortButton}"
+					inputSuccess="onEmployeeInputSuccess"></libs:ScanButton>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+
+</mvc:View>
